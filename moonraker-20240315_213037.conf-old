@@ -61,6 +61,14 @@ managed_services: klipper moonraker
 output_path: ~/printer_data/timelapse/
 frame_path: /tmp/timelapse/printer
 
+# Crowsnest update_manager entry
+[update_manager crowsnest]
+type: git_repo
+path: ~/crowsnest
+origin: https://github.com/mainsail-crew/crowsnest.git
+managed_services: crowsnest
+install_script: tools/pkglist.sh
+
 [update_manager klipper_tmc_autotune]
 type: git_repo
 channel: dev
@@ -70,6 +78,19 @@ managed_services: klipper
 primary_branch: main
 install_script: install.sh
 
+#[update_manager beacon]
+#type: git_repo
+#channel: dev
+#path: ~/beacon_klipper
+#origin: https://github.com/beacon3d/beacon_klipper.git
+#env: ~/klippy-env/bin/python
+#requirements: requirements.txt
+#install_script: install.sh
+#is_system_service: False
+#managed_services: klipper
+#info_tags:
+#  desc=Beacon Surface Scanner
+  
 [update_manager cartographer]
 type: git_repo
 path: ~/cartographer-klipper
@@ -82,7 +103,6 @@ is_system_service: False
 managed_services: klipper
 info_tags:
   desc=Cartographer Probe
-  
 ## Klippain Shake&Tune automatic update management
 [update_manager Klippain-ShakeTune]
 type: git_repo
@@ -101,23 +121,3 @@ origin: https://github.com/anonoei/klipper_auto_speed.git
 primary_branch: main
 install_script: install.sh
 managed_services: klipper
-
-[update_manager mobileraker]
-type: git_repo
-path: /home/pi/mobileraker_companion
-origin: https://github.com/Clon1998/mobileraker_companion.git
-primary_branch:main
-managed_services: mobileraker
-env: /home/pi/mobileraker-env/bin/python
-requirements: scripts/mobileraker-requirements.txt
-install_script: scripts/install.sh
-
-[include moonraker-obico-update.cfg]
-
-# Crowsnest update_manager entry
-[update_manager crowsnest]
-type: git_repo
-path: ~/crowsnest
-origin: https://github.com/mainsail-crew/crowsnest.git
-managed_services: crowsnest
-install_script: tools/pkglist.sh
